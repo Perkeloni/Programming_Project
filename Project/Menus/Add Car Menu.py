@@ -40,8 +40,6 @@ positionY_entry = Entry(frame_5)
 
 submit_button = Button(frame_7, text="Submit")
 
-
-
 positionX_entry.config(width=5)
 positionY_entry.config(width=5)
 
