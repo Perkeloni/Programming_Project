@@ -31,6 +31,8 @@ services_check = Checkbutton(frame_4, text="Services Performed")
 above_check = Checkbutton(frame_5, text="Above")
 below_check = Checkbutton(frame_5, text="Below")
 
+submit_button = Button(frame_6, text="Submit")
+
 entry = Entry(frame_2)
 value_entry = Entry(frame_3)
 
@@ -49,5 +51,7 @@ below_check.pack(side=LEFT, pady=5)
 
 entry.pack(side=BOTTOM, pady=5)
 value_entry.pack(side=BOTTOM, pady=5)
+
+submit_button.pack(side=BOTTOM)
 
 root = mainloop()
