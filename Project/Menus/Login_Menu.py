@@ -1,17 +1,31 @@
 from tkinter import *
-import Login_Checking
+import Login_Checking_Utils
+import Error_PopUps
 
-error = False
 
+def check_password():
 
-def check_password(self):
-
+    global error
+    error = False
     password = password_entry.get()
     login = login_entry.get()
 
     root.destroy()
 
-    Login_Checking.check_login(login, password)
+    error = Login_Checking_Utils.check_login(login, password)
+
+    if error == 1:
+        Error_PopUps.wrong_login()
+
+#def create_account(self):
+
+
+
+
+
+
+
+
 
 root = Tk()
 root.geometry("300x300")
@@ -40,6 +54,7 @@ submit_button.grid(row=3, column=0, padx=(0,50))
 create_button.grid(row=3, column=0,  padx=(100,0))
 
 submit_button.bind("<Button-1>", check_password)
+#create_button.bind("<Button-1>", create_account)
 
 
 

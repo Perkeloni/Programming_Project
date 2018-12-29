@@ -1,5 +1,3 @@
-#print(Login_Menu.login)
-#print(Login_Menu.password)
 import os
 
 def check_login(login, password):
@@ -21,6 +19,8 @@ def check_login(login, password):
             if login == (line[0]) and password == (line[1]):
                 if int(line[2]) == 1:
                     admin = True
+                else:
+                    entry = True
 
             line = file.readline()
 
@@ -29,4 +29,9 @@ def check_login(login, password):
 
     if admin:
         os.system("python Admin_Menu.py")
+    elif entry:
+        os.system("python Client_Request_Car_Menu.py")
+    else:
+        return 1
 
+def create_account(login, password):
