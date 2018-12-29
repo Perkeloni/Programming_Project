@@ -48,6 +48,7 @@ def create_account(login, password):
         file = open(r"C:\Users\User\PycharmProjects\Projecto_Programação\Project\Databases\Login_Database", "r")
         line = file.readline()
         print(line)
+
         while line != "":
             line = line.replace("/n", "")
             line = line.split(" ")

@@ -2,6 +2,7 @@ from tkinter import *
 
 root = Tk()
 root.geometry("300x300")
+root.resizable(width=False, height=False)
 
 frame_1 = Frame(root)
 frame_2 = Frame(root)

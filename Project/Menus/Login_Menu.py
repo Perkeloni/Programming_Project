@@ -2,6 +2,7 @@ from tkinter import *
 import Login_Checking_Utils
 import Error_PopUps
 
+
 def check_password(self):
 
     global error
@@ -16,6 +17,7 @@ def check_password(self):
     if error == 1:
         Error_PopUps.wrong_login()
 
+
 def create_account(self):
 
     password = password_entry.get()
@@ -24,13 +26,6 @@ def create_account(self):
     root.destroy()
 
     Login_Checking_Utils.create_account(login, password)
-
-
-
-
-
-
-
 
 
 root = Tk()
