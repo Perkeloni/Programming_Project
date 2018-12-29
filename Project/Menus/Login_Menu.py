@@ -1,31 +1,18 @@
 from tkinter import *
-import os
 import Login_Checking
-
-global password
-global login
-global program_running
 
 password = None
 login = None
 error = False
-program_running = True
 
 def check_password(self):
-    global password
-    global login
-    global program_running
 
     password = password_entry.get()
     login = login_entry.get()
 
-    Login_Checking.check_password(login, password)
+    root.destroy()
 
-    program_running = False
-
-    os.system("python Login_Checking.py")
-
-
+    Login_Checking.check_login(login, password)
 
 root = Tk()
 root.geometry("300x300")

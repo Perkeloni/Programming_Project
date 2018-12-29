@@ -1,14 +1,13 @@
 #print(Login_Menu.login)
 #print(Login_Menu.password)
+import os
 
-def check_password(login, password):
+def check_login(login, password):
 
     global admin
     program_running = True
     entry = False
     admin = False
-    print(login)
-    print(password)
 
     file = open(r"C:\Users\User\PycharmProjects\Projecto_Programação\Project\Databases\Login_Database", "r")
 
@@ -18,16 +17,16 @@ def check_password(login, password):
         while line != "":
             line = line.replace("/n", "")
             line = line.split(" ")
-            print(line[0])
-            print(line[1])
+
             if login == (line[0]) and password == (line[1]):
-                if line[2] == 1:
+                if int(line[2]) == 1:
                     admin = True
+
             line = file.readline()
 
         program_running = False
         file.close()
 
-    if admin == True:
+    if admin:
         os.system("python Admin_Menu.py")
 
