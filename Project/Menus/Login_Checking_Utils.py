@@ -1,5 +1,4 @@
 import os
-import re
 import tkinter.messagebox
 from tkinter import *
 
@@ -44,14 +43,17 @@ def create_account(login, password):
     root = Tk()
     print(password)
 
-    if re.match(r"^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[@#$])[\w\d@#%]{6,12}$", password):
+    if re.match(r'^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[@#$])[\w\d@#$]{6,12}$', password):
         file = open(r"C:\Users\User\PycharmProjects\Projecto_Programação\Project\Databases\Login_Database", "a")
-        file.write(login, " ", password, "0")
+        input = login + " " + password + " 0" + "\n"
+        file.write(input)
         file.close()
+        tkinter.messagebox.showinfo("Account Created", "Your Account Has Been Created, Please Login Again")
         root.destroy()
+        os.system("python Login_Menu.py")
 
     else:
-        tkinter.messagebox.showinfo("Creating an Account", "Your password must contain, 6 letters, 1 uppercase, and a @ # or %")
+        tkinter.messagebox.showinfo("Creating an Account", "Your password must contain, 6 letters, 1 uppercase, and a @ # or $")
         print(password)
         root.destroy()
         os.system("python Login_Menu.py")
