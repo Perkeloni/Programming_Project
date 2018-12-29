@@ -1,4 +1,23 @@
 from tkinter import *
+import os
+
+
+
+error = False
+program_running = True
+
+def check_password(self):
+    global password
+    global login
+    global program_running
+    password = password_entry.get()
+    login = login_entry.get()
+
+    program_running = False
+
+    os.system("python Login_Checking.py")
+
+
 
 root = Tk()
 root.geometry("300x300")
@@ -26,5 +45,9 @@ password_entry.grid(row=2, columnspan=2, padx=(50,0))
 submit_button.grid(row=3, column=0, padx=(0,50))
 create_button.grid(row=3, column=0,  padx=(100,0))
 
+submit_button.bind("<Button-1>", check_password)
+
+
 
 root = mainloop()
+
