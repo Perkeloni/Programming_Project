@@ -1,9 +1,8 @@
 from tkinter import *
 import Login_Checking
 
-password = None
-login = None
 error = False
+
 
 def check_password(self):
 
