@@ -1,8 +1,11 @@
 from tkinter import *
 
+
 root = Tk()
 root.geometry("300x300")
 root.resizable(width=False, height=False)
+
+var = [IntVar(), IntVar(), IntVar(), IntVar(), IntVar(), IntVar(), IntVar(), IntVar()]
 
 frame_0 = Frame(root)
 frame_1 = Frame(root)
@@ -23,14 +26,14 @@ frame_6.pack()
 title = Label(frame_0, text="Search by:", font="Arial, 20")
 valuesearch = Label(frame_3, text="Value Search by:", font="Arial, 20")
 
-name_check = Checkbutton(frame_1, text="Name")
-brand_check = Checkbutton(frame_1, text="Brand")
-plate_check = Checkbutton(frame_1, text="License Plate")
-earning_check = Checkbutton(frame_4, text="Earnings")
-services_check = Checkbutton(frame_4, text="Services Performed")
+name_check = Checkbutton(frame_1, text="Name", variable=var[0])
+brand_check = Checkbutton(frame_1, text="Brand", variable=var[1])
+plate_check = Checkbutton(frame_1, text="License Plate", variable=var[2])
+earning_check = Checkbutton(frame_4, text="Earnings", variable=var[3])
+services_check = Checkbutton(frame_4, text="Services Performed", variable=var[4])
 
-above_check = Checkbutton(frame_5, text="Above")
-below_check = Checkbutton(frame_5, text="Below")
+above_check = Checkbutton(frame_5, text="Above", variable=var[5])
+below_check = Checkbutton(frame_5, text="Below", variable=var[6])
 
 submit_button = Button(frame_6, text="Submit")
 

@@ -32,7 +32,6 @@ class Vehicles:
     def busy_status(self):
         self.busy = True
 
-
     def __str__(self):
         return "Number: " + self.number + " Type: " + self.car_type + " Brand: " + self.brand + " Driver: " + self.driver\
                + " License: " + self.license + " KM: " + self.km + " Services: " + self.jobs + " Money: "\
