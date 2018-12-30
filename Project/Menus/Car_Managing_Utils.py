@@ -33,7 +33,7 @@ def update_class():
 
     global Vehicles
     program_running = True
-    car_list = list
+    car_list = []
 
     with open(filename) as file:
 
@@ -53,7 +53,7 @@ def update_class():
 
 car_list = update_class()
 print(car_list)
-print(car_list[1].brand)
+print(car_list[0].brand)
 
 
 
