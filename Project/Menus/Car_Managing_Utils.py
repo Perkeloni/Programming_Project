@@ -17,16 +17,26 @@ class Vehicles:
         self.money = spec_list[7]
         self.x = spec_list[8]
         self.y = spec_list[9]
+        self.busy = False
 
         if self.car_type == "car":
-            self.cost = 4
+            self.cost = 0.4  #per km
             self.start_cost = 3
             self.speed = 300
 
         if self.car_type == "van":
-            self.cost = 7
+            self.cost = 7   #per km
             self.start_cost = 4
             self.speed = 250
+
+    def busy_status(self):
+        self.busy = True
+
+
+    def __str__(self):
+        return "Number: " + self.number + " Type: " + self.car_type + " Brand: " + self.brand + " Driver: " + self.driver\
+               + " License: " + self.license + " KM: " + self.km + " Services: " + self.jobs + " Money: "\
+                + self.money + " X: " + self.x + " Y: " + self.y + " Busy:" + (str(int(self.busy)))
 
 
 def update_class():
@@ -54,6 +64,7 @@ def update_class():
 car_list = update_class()
 print(car_list)
 print(car_list[0].brand)
+print(car_list[0])
 
 
 
