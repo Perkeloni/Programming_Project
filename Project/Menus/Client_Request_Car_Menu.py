@@ -1,5 +1,5 @@
 #Must- Input own coordinates. Input destination coordinates
-#Must input time desired to reach destination
+#Must input time desired to reach destination and ammount of people to transport
 
 from tkinter import *
 

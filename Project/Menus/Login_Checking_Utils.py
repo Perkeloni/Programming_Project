@@ -2,6 +2,7 @@ import os
 import tkinter.messagebox
 from tkinter import *
 
+filename = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Databases/Login_Database'))
 
 def check_login(login, password):
 
@@ -10,9 +11,9 @@ def check_login(login, password):
     entry = False
     admin = False
 
-    file = open(r"C:\Users\User\PycharmProjects\Projecto_Programação\Project\Databases\Login_Database", "r")
+    file = open(filename, "r")
 
-    while program_running == True:
+    while program_running:
         line = file.readline()
 
         while line != "":
@@ -45,7 +46,7 @@ def create_account(login, password):
     duplicate = False
 
     while program_running:
-        file = open(r"C:\Users\User\PycharmProjects\Projecto_Programação\Project\Databases\Login_Database", "r")
+        file = open(filename, "r")
         line = file.readline()
         print(line)
 
@@ -63,7 +64,7 @@ def create_account(login, password):
         file.close()
 
         if re.match(r'^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[@#$])[\w\d@#$]{6,12}$', password) and duplicate == False:
-            file = open(r"C:\Users\User\PycharmProjects\Projecto_Programação\Project\Databases\Login_Database", "a")
+            file = open(filename, "a")
             input = login + " " + password + " 0" + "\n"
             file.write(input)
             file.close()
