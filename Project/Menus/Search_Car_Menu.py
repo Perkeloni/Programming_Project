@@ -5,8 +5,8 @@ root = Tk()
 root.geometry("300x300")
 root.resizable(width=False, height=False)
 
-var = [IntVar(), IntVar(), IntVar(), IntVar(), IntVar(), IntVar(), IntVar(), IntVar()]
-
+var = [IntVar(), IntVar(), IntVar(), IntVar(), IntVar(), IntVar(), IntVar(), IntVar()] #have yo use a .get method to take
+                                                                                       #variables out of this bullshit like var[1].get()
 frame_0 = Frame(root)
 frame_1 = Frame(root)
 frame_2 = Frame(root)

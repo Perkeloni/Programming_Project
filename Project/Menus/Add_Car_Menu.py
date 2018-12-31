@@ -1,10 +1,32 @@
 from tkinter import *
 import Car_Managing_Utils
+import Error_PopUps
+
+def add_car(self):
+
+    brand = brand_entry.get()
+    license = plate_entry.get()
+    driver = driver_entry.get()
+    driver = driver.replace(" ", "_")
+    x = positionX_entry.get()
+    y = positionY_entry.get()
+    car = checks[0].get()
+    van = checks[1].get()
+
+    if car and van == 1:
+        root.destroy()
+        Error_PopUps.check_only_one()
+
+    if car == 1:
+        car_type = "car"
+    if van ==1:
+        car_type = "van"
+
+    root.destroy()
+    Car_Managing_Utils.write_car(brand, driver, license, x, y, car_type)
 
 
-
-
-
+#def write_car(brand, driver, license, x, y, car_type):
 
 
 
@@ -12,6 +34,8 @@ import Car_Managing_Utils
 root = Tk()
 root.geometry("300x300")
 root.resizable(width=False, height=False)
+
+checks = [IntVar(), IntVar()]
 
 ################################ Defining the layout widgets to include in the window
 
@@ -39,8 +63,8 @@ car_position = Label(frame_4, text="Car Position:")
 X_label = Label(frame_5, text="X:")
 Y_label = Label(frame_5, text="Y:")
 
-check_car = Checkbutton(frame_6, text="Car")
-check_van = Checkbutton (frame_6, text="Van")
+check_car = Checkbutton(frame_6, text="Car", variable=checks[0])
+check_van = Checkbutton (frame_6, text="Van", variable=checks[1])
 
 brand_entry = Entry(frame_1)
 plate_entry = Entry(frame_2)
@@ -76,6 +100,8 @@ plate_entry.pack(pady=7, side=LEFT)
 driver_entry.pack(pady=7, side=LEFT)
 
 submit_button.pack(side=BOTTOM)
+
+submit_button.bind("<Button-1>", add_car)
 
 ######################################## End
 

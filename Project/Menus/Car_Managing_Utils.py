@@ -1,5 +1,7 @@
-#Functions to manage car database.
+# Functions to manage car database.
 import os
+import tkinter.messagebox
+from tkinter import *
 
 filename = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Databases/Car_Database'))
 
@@ -20,12 +22,12 @@ class Vehicles:
         self.busy = False
 
         if self.car_type == "car":
-            self.cost = 0.4  #per km
+            self.cost = 0.4  # per km
             self.start_cost = 3
             self.speed = 300
 
         if self.car_type == "van":
-            self.cost = 7   #per km
+            self.cost = 7  # per km
             self.start_cost = 4
             self.speed = 250
 
@@ -33,13 +35,12 @@ class Vehicles:
         self.busy = True
 
     def __str__(self):
-        return "Number: " + self.number + " Type: " + self.car_type + " Brand: " + self.brand + " Driver: " + self.driver\
-               + " License: " + self.license + " KM: " + self.km + " Services: " + self.jobs + " Money: "\
-                + self.money + " X: " + self.x + " Y: " + self.y + " Busy:" + (str(int(self.busy)))
+        return "Number: " + self.number + " Type: " + self.car_type + " Brand: " + self.brand + " Driver: " + self.driver \
+               + " License: " + self.license + " KM: " + self.km + " Services: " + self.jobs + " Money: " \
+               + self.money + " X: " + self.x + " Y: " + self.y + " Busy:" + (str(int(self.busy)))
 
 
 def update_class():
-
     global Vehicles
     program_running = True
     car_list = []
@@ -60,11 +61,35 @@ def update_class():
             program_running = False
 
 
-car_list = update_class()
-print(car_list)
-print(car_list[0].brand)
-print(car_list[0])
+def write_car(brand, driver, license, x, y, car_type):
+    root = Tk()
+    valid = False
 
+    if len(license) != 8:
+        tkinter.messagebox.showinfo("Error", "Your license plate is not valid")
+        root.destroy()
+        os.system("python Add_Car_Menu.py")
 
+    elif int(x) < 0 or int(x) > 5 or int(y) < 0 or int(y) > 5:
+        tkinter.messagebox.showinfo("Error", "Your position is not valid")
+        root.destroy()
+        os.system("python Add_Car_Menu.py")
 
+    else:
+        valid = True
 
+    if valid:
+        with open(filename) as file:
+            line = file.readlines()
+            string = line[-1]
+            number = int(string[0])
+            number += 1
+
+        file = open(filename, "a")
+        input = (str(number) + " " + car_type + " " + brand + " " + driver + " " + license + " " + "0" + " " + "0" + " "
+                 + "0" + " " + x + " " + y + "\n")
+        file.write(input)
+        file.close()
+        tkinter.messagebox.showinfo("Success", "Car Was Added")
+        root.destroy()
+        os.system("python Admin_Menu.py")

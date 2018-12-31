@@ -10,3 +10,11 @@ def wrong_login():
 
     root.destroy()
     os.system("python Login_Menu.py")
+
+def check_only_one():
+    root = Tk()
+
+    tkinter.messagebox.showinfo("Error", "Check only one box per item")
+
+    root.destroy()
+    os.system("python Add_Car_Menu.py")
