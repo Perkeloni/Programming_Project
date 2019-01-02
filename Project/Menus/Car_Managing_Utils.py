@@ -2,6 +2,7 @@
 import os
 import tkinter.messagebox
 from tkinter import *
+import Display_List
 
 filename = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Databases/Car_Database'))
 
@@ -19,6 +20,7 @@ class Vehicles:
         self.money = spec_list[7]
         self.x = spec_list[8]
         self.y = spec_list[9]
+        self.active = [10]
         self.busy = False
 
         if self.car_type == "car":
@@ -87,9 +89,30 @@ def write_car(brand, driver, license, x, y, car_type):
 
         file = open(filename, "a")
         input = (str(number) + " " + car_type + " " + brand + " " + driver + " " + license + " " + "0" + " " + "0" + " "
-                 + "0" + " " + x + " " + y + "\n")
+                 + "0" + " " + x + " " + y + " " + "1" + "\n")
         file.write(input)
         file.close()
         tkinter.messagebox.showinfo("Success", "Car Was Added")
         root.destroy()
         os.system("python Admin_Menu.py")
+
+def set_inactive(car_number):
+    file = open(filename, "r")
+    data = file.readlines()
+
+    line = data[(int(car_number)-1)]
+    line = line[::-1]
+    line = line.replace("1", "0", 1)
+    line = line[::-1]
+    data[(int(car_number)-1)] = line
+
+    file.close()
+
+    file = open(filename, "w")
+    print(data)
+    file.writelines(data)
+    file.close()
+
+
+car_list = update_class()
+Display_List.display_list(car_list)
