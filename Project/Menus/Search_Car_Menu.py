@@ -1,9 +1,70 @@
 from tkinter import *
+import Error_PopUps
+import os
+import Car_Managing_Utils
+import Display_List
 
 
 root = Tk()
 root.geometry("300x300")
 root.resizable(width=False, height=False)
+
+
+def submit(self):
+    valid = True
+    name = var[0].get()
+    brand = var[1].get()
+    plate = var[2].get()
+
+    earning = var[3].get()
+    services = var[4].get()
+
+    above = var[5].get()
+    below = var[6].get()
+
+    name_entry_result = (entry.get()).replace(" ", "_")
+    value_entry_result = value_entry.get()
+
+    check_list = [name, brand, plate, earning, services, above, below]
+
+    if sum(check_list[0:3]) > 1 or sum(check_list[3:5]) > 1 or sum(check_list[5:7]) > 1:
+        Error_PopUps.check_only_one()
+        root.destroy()
+        os.system("python Search_Car_Menu.py")
+        valid = False
+
+    if valid:
+        car_object_list = Car_Managing_Utils.update_class() #can change to global variable source later
+        root.destroy()
+        if name:
+            criteria = ["driver", name_entry_result]
+            Display_List.display_list(car_object_list, criteria)
+        if brand:
+            criteria = ["brand", name_entry_result]
+            Display_List.display_list(car_object_list, criteria)
+        if plate:
+            criteria = ["plate", name_entry_result]
+            Display_List.display_list(car_object_list, criteria)
+        if earning and above:
+            criteria = ["earnings+", float(value_entry_result)]
+            Display_List.display_list(car_object_list, criteria)
+        if earning and below:
+            criteria = ["earnings-", float(value_entry_result)]
+            Display_List.display_list(car_object_list, criteria)
+        if services and above:
+            criteria = ["services+", int(value_entry_result)]
+            Display_List.display_list(car_object_list, criteria)
+        if services and below:
+            criteria = ["services-", int(value_entry_result)]
+            Display_List.display_list(car_object_list, criteria)
+    if sum(check_list) == 0:
+        criteria = "None"
+        Display_List.display_list(car_object_list, criteria)
+
+
+
+
+
 
 var = [IntVar(), IntVar(), IntVar(), IntVar(), IntVar(), IntVar(), IntVar(), IntVar()] #have yo use a .get method to take
                                                                                        #variables out of this bullshit like var[1].get()
@@ -57,5 +118,7 @@ entry.pack(side=BOTTOM, pady=5)
 value_entry.pack(side=BOTTOM, pady=5)
 
 submit_button.pack(side=BOTTOM)
+
+submit_button.bind("<Button-1>", submit)
 
 root = mainloop()

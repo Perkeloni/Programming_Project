@@ -1,2 +1,5 @@
 1 car Car_Brand Car_Driver Car_License 10.0 10 20.0 2.5 2.5 1
-2 car Mercedes Joao_Sousa 74-DJ-35 0 0 0 3 4 1
+2 car Mercedes Joao_Sousa 74-DJ-35 0 20 0.0 3 4 1
+3 car Volkswagen Ricar_Moreira 78-NN-22 0 10 0.0 3 4 1
+4 car Mercedes Rui_Pereira 79-JK-22 0 0 0.0 3 4 1
+5 van Renault Ricardo_Mendes 77-KN-25 0 0 0 2 4 1

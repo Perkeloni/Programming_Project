@@ -112,7 +112,3 @@ def set_inactive(car_number):
     print(data)
     file.writelines(data)
     file.close()
-
-
-car_list = update_class()
-Display_List.display_list(car_list)

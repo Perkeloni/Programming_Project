@@ -1,9 +1,13 @@
 from tkinter import *
 import Car_Managing_Utils
 import Error_PopUps
+import os
+
 
 def add_car(self):
 
+    valid = False
+    car_type = None
     brand = brand_entry.get()
     license = plate_entry.get()
     driver = driver_entry.get()
@@ -16,19 +20,23 @@ def add_car(self):
     if car and van == 1:
         root.destroy()
         Error_PopUps.check_only_one()
+        os.system("python Add_Car_Menu.py")
 
     if car == 1:
         car_type = "car"
+        valid = True
     if van ==1:
         car_type = "van"
+        valid = True
 
-    root.destroy()
-    Car_Managing_Utils.write_car(brand, driver, license, x, y, car_type)
+    if car_type is None:
+        root.destroy()
+        Error_PopUps.nothing_inserted()
+        os.system("python Admin_Menu.py")
 
-
-#def write_car(brand, driver, license, x, y, car_type):
-
-
+    if valid:
+        root.destroy()
+        Car_Managing_Utils.write_car(brand, driver, license, x, y, car_type)
 
 
 root = Tk()
