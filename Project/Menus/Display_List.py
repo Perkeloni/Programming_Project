@@ -83,14 +83,14 @@ def display_list(car_object_list, criteria, database):
                 listbox.insert(END, item.number + " " + item.car_type + " " + item.brand + " " +
                                 item.driver + " " + item.license + " " + item.jobs + " " + item.money + "€")
 
-        if database == "users":
+    if database == "users":
 
-            listbox.insert(END, "User, password, 1=admin 0=user")
+        listbox.insert(END, "User, password, 1=admin 0=user")
 
-            with open(filename) as file:
-                lines = file.readlines()
-                for item in lines:
-                    listbox.insert(END, item)
+        with open(filename) as file:
+            lines = file.readlines()
+            for item in lines:
+                listbox.insert(END, item)
 
     root.mainloop()
 
