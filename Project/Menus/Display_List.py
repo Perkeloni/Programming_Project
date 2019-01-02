@@ -31,70 +31,66 @@ def display_list(car_object_list, criteria, database):
     submit_button.bind("<Button-1>", submit)
     cancel_button.bind("<Button-1>", cancel)
 
+    listbox.insert(END, "Select a item for more options")
+
     if database == "cars":
 
-        listbox.insert(END, "Select a car for more options")
         listbox.insert(END, "Last values are Services and Money")
 
         if criteria[0] == "driver":
             for item in car_object_list:
                 if item.driver.lower() == criteria[1].lower():
                     listbox.insert(END, item.number + " " + item.car_type + " " + item.brand + " " +
-                                   item.driver + " " + item.license + " " + item.jobs + " " + item.money)
+                                   item.driver + " " + item.license + " " + item.jobs + " " + item.money + "€")
 
         if criteria[0] == "brand":
             for item in car_object_list:
                 if item.brand.lower() == criteria[1].lower():
                     listbox.insert(END, item.number + " " + item.car_type + " " + item.brand + " " +
-                                   item.driver + " " + item.license + " " + item.jobs + " " + item.money)
+                                   item.driver + " " + item.license + " " + item.jobs + " " + item.money + "€")
 
         if criteria[0] == "plate":
             for item in car_object_list:
                 if item.license.lower() == criteria[1].lower():
                     listbox.insert(END, item.number + " " + item.car_type + " " + item.brand + " " +
-                                   item.driver + " " + item.license + " " + item.jobs + " " + item.money)
+                                   item.driver + " " + item.license + " " + item.jobs + " " + item.money + "€")
 
         if criteria[0] == "earnings+":
             for item in car_object_list:
-                if int(item.money) >= criteria[1]:
+                if float(item.money) >= criteria[1]:
                     listbox.insert(END, item.number + " " + item.car_type + " " + item.brand + " " +
-                                   item.driver + " " + item.license + " " + item.jobs + " " + item.money)
+                                   item.driver + " " + item.license + " " + item.jobs + " " + item.money + "€")
 
         if criteria[0] == "earnings-":
             for item in car_object_list:
-                if int(item.money) <= criteria[1]:
+                if float(item.money) <= criteria[1]:
                     listbox.insert(END, item.number + " " + item.car_type + " " + item.brand + " " +
-                                   item.driver + " " + item.license + " " + item.jobs + " " + item.money)
+                                   item.driver + " " + item.license + " " + item.jobs + " " + item.money + "€")
 
         if criteria[0] == "services+":
             for item in car_object_list:
                 if int(item.jobs) >= criteria[1]:
                     listbox.insert(END, item.number + " " + item.car_type + " " + item.brand + " " +
-                                   item.driver + " " + item.license + " " + item.jobs + " " + item.money)
+                                   item.driver + " " + item.license + " " + item.jobs + " " + item.money + "€")
 
         if criteria[0] == "services-":
             for item in car_object_list:
                 if int(item.jobs) <= criteria[1]:
                     listbox.insert(END, item.number + " " + item.car_type + " " + item.brand + " " +
-                                   item.driver + " " + item.license + " " + item.jobs + " " + item.money)
+                                   item.driver + " " + item.license + " " + item.jobs + " " + item.money + "€")
         if criteria == "None":
             for item in car_object_list:
                 listbox.insert(END, item.number + " " + item.car_type + " " + item.brand + " " +
-                                item.driver + " " + item.license + " " + item.jobs + " " + item.money)
+                                item.driver + " " + item.license + " " + item.jobs + " " + item.money + "€")
 
-    elif database == "users":
+        elif database == "users":
 
-        listbox.insert(END, "User, password, 1=admin 0=user")
+            listbox.insert(END, "User, password, 1=admin 0=user")
 
-        with open(filename) as file:
-            lines = file.readlines()
-            for item in lines:
-                listbox.insert(END, item)
-
-
-
-
-
+            with open(filename) as file:
+                lines = file.readlines()
+                for item in lines:
+                    listbox.insert(END, item)
 
     root.mainloop()
 

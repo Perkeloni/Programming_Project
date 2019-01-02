@@ -11,13 +11,13 @@ def add_car_exec(self):
 def car_data_exec(self):
     root.destroy()
     os.system("python Search_Car_Menu.py")
+    Display_List.display_list(car_list_object, criteria, "users")
+
 
 def client_data_exec(self):
     root.destroy()
     car_list_object = 0
     criteria = 0
-    Display_List.display_list(car_list_object, criteria, "users")
-
 
 root = Tk()
 
