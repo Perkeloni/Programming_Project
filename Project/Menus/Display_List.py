@@ -83,7 +83,7 @@ def display_list(car_object_list, criteria, database):
                 listbox.insert(END, item.number + " " + item.car_type + " " + item.brand + " " +
                                 item.driver + " " + item.license + " " + item.jobs + " " + item.money + "€")
 
-        elif database == "users":
+        if database == "users":
 
             listbox.insert(END, "User, password, 1=admin 0=user")
 
