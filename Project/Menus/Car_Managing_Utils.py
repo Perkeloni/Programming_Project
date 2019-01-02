@@ -88,11 +88,8 @@ def write_car(brand, driver, license_plate, x, y, car_type):
         valid = True
 
     if valid:
-        with open(filename) as file:
-            line = file.readlines()
-            string = line[-1]
-            number = int(string[0])
-            number += 1
+        number = int((car_list[-1]).number)
+        number +=1
 
         file = open(filename, "a")
         input = (str(number) + " " + car_type + " " + brand + " " + driver + " " + license_plate + " " + "0.0" + " " + "0"
