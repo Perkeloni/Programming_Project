@@ -63,16 +63,23 @@ def update_class():
             program_running = False
 
 
-def write_car(brand, driver, license, x, y, car_type):
+def write_car(brand, driver, license_plate, x, y, car_type):
     root = Tk()
     valid = False
+    car_list = update_class() #Could set this to global variable instead of reading from file again
 
-    if len(license) != 8:
+    for check in car_list:
+        if check.license == license_plate:
+            tkinter.messagebox.showinfo("Error", "Your license plate is already registered")
+            root.destroy()
+            os.system("python Add_Car_Menu.py")
+
+    if len(license_plate) != 8:
         tkinter.messagebox.showinfo("Error", "Your license plate is not valid")
         root.destroy()
         os.system("python Add_Car_Menu.py")
 
-    elif int(x) < 0 or int(x) > 5 or int(y) < 0 or int(y) > 5:
+    elif float(x) < 0.0 or float(x) > 5.0 or float(y) < 0.0 or float(y) > 5.0:
         tkinter.messagebox.showinfo("Error", "Your position is not valid")
         root.destroy()
         os.system("python Add_Car_Menu.py")
@@ -88,13 +95,14 @@ def write_car(brand, driver, license, x, y, car_type):
             number += 1
 
         file = open(filename, "a")
-        input = (str(number) + " " + car_type + " " + brand + " " + driver + " " + license + " " + "0" + " " + "0" + " "
-                 + "0" + " " + x + " " + y + " " + "1" + "\n")
+        input = (str(number) + " " + car_type + " " + brand + " " + driver + " " + license_plate + " " + "0.0" + " " + "0"
+                 + " " + "0.0" + " " + x + " " + y + " " + "1" + "\n")
         file.write(input)
         file.close()
         tkinter.messagebox.showinfo("Success", "Car Was Added")
         root.destroy()
         os.system("python Admin_Menu.py")
+
 
 def set_inactive(car_number):
     file = open(filename, "r")

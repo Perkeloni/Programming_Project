@@ -9,7 +9,7 @@ def add_car(self):
     valid = False
     car_type = None
     brand = brand_entry.get()
-    license = plate_entry.get()
+    license_plate = plate_entry.get()
     driver = driver_entry.get()
     driver = driver.replace(" ", "_")
     x = positionX_entry.get()
@@ -36,7 +36,7 @@ def add_car(self):
 
     if valid:
         root.destroy()
-        Car_Managing_Utils.write_car(brand, driver, license, x, y, car_type)
+        Car_Managing_Utils.write_car(brand, driver, license_plate, x, y, car_type)
 
 
 root = Tk()
