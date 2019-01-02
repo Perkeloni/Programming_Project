@@ -2,7 +2,6 @@
 import os
 import tkinter.messagebox
 from tkinter import *
-import Display_List
 
 filename = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Databases/Car_Database'))
 
