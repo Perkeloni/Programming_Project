@@ -37,29 +37,29 @@ def submit(self):
         car_object_list = Car_Managing_Utils.update_class() #can change to global variable source later
         root.destroy()
         if name:
-            criteria = ["driver", name_entry_result]
+            criteria = ["driver", name_entry_result, "cars"]
             Display_List.display_list(car_object_list, criteria)
         if brand:
-            criteria = ["brand", name_entry_result]
+            criteria = ["brand", name_entry_result, "cars"]
             Display_List.display_list(car_object_list, criteria)
         if plate:
-            criteria = ["plate", name_entry_result]
+            criteria = ["plate", name_entry_result, "cars"]
             Display_List.display_list(car_object_list, criteria)
         if earning and above:
-            criteria = ["earnings+", float(value_entry_result)]
+            criteria = ["earnings+", float(value_entry_result), "cars"]
             Display_List.display_list(car_object_list, criteria)
         if earning and below:
-            criteria = ["earnings-", float(value_entry_result)]
+            criteria = ["earnings-", float(value_entry_result), "cars"]
             Display_List.display_list(car_object_list, criteria)
         if services and above:
-            criteria = ["services+", int(value_entry_result)]
+            criteria = ["services+", int(value_entry_result), "cars"]
             Display_List.display_list(car_object_list, criteria)
         if services and below:
-            criteria = ["services-", int(value_entry_result)]
+            criteria = ["services-", int(value_entry_result), "cars"]
             Display_List.display_list(car_object_list, criteria)
     if sum(check_list) == 0:
         criteria = "None"
-        Display_List.display_list(car_object_list, criteria)
+        Display_List.display_list(car_object_list, criteria, "cars")
 
 
 
