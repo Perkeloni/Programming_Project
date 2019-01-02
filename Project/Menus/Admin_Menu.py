@@ -8,14 +8,14 @@ def add_car_exec(self):
     root.destroy()
     os.system("python Add_Car_Menu.py")
 
-def client_data_exec(self):
-    root.destroy()
-    car_list_object = 0
-    criteri
 def car_data_exec(self):
     root.destroy()
     os.system("python Search_Car_Menu.py")
-a = 0
+
+def client_data_exec(self):
+    root.destroy()
+    car_list_object = 0
+    criteria = 0
     Display_List.display_list(car_list_object, criteria, "users")
 
 
