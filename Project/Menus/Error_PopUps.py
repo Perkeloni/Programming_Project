@@ -26,3 +26,10 @@ def nothing_inserted():
     tkinter.messagebox.showinfo("Error", "Nothing was Inserted")
 
     root.destroy()
+
+def inactive_set():
+    root = Tk()
+
+    tkinter.messagebox.showinfo("Done", "Car Is Now Inactive")
+
+    root.destroy()

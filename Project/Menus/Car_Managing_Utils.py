@@ -19,7 +19,7 @@ class Vehicles:
         self.money = spec_list[7]
         self.x = spec_list[8]
         self.y = spec_list[9]
-        self.active = [10]
+        self.active = spec_list[10]
         self.busy = False
 
         if self.car_type == "car":
@@ -36,9 +36,9 @@ class Vehicles:
         self.busy = True
 
     def __str__(self):
-        return "Number: " + self.number + " Type: " + self.car_type + " Brand: " + self.brand + " Driver: " + self.driver \
-               + " License: " + self.license + " KM: " + self.km + " Services: " + self.jobs + " Money: " \
-               + self.money + " X: " + self.x + " Y: " + self.y + " Busy:" + (str(int(self.busy)))
+        return "Number:_" + self.number + " Type:_" + self.car_type + " Brand:_" + self.brand + " Driver:_" + self.driver \
+               + " License:_" + self.license + " KM:_" + self.km + " Services:_" + self.jobs + " Money:_" \
+               + self.money + " X:_" + self.x + " Y:_" + self.y + " Busy:_" + (str(int(self.busy))) + " Active:_" + self.active
 
 
 def update_class():
@@ -116,3 +116,4 @@ def set_inactive(car_number):
     print(data)
     file.writelines(data)
     file.close()
+
