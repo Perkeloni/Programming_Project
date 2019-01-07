@@ -8,6 +8,7 @@ root = Tk()
 root.geometry("300x300")
 root.resizable(width=False, height=False)
 
+
 def request(self):
     people_ammount = int(ammount_entry.get())
     user_position = [int(positionX_entry_user.get()), int(positionY_entry_user.get())]
@@ -16,7 +17,7 @@ def request(self):
         tkinter.messagebox.showinfo("Error", "Your position/ Destination is not valid, must be between 0 and 5")
     if people_ammount > 6:
         tkinter.messagebox.showinfo("Error", "Our service does not transport more than 6 people")
-    
+
 
 
 frame_0 = Frame(root)
