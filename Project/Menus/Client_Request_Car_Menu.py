@@ -2,10 +2,22 @@
 #Must input time desired to reach destination and ammount of people to transport
 
 from tkinter import *
+import tkinter.messagebox
 
 root = Tk()
 root.geometry("300x300")
 root.resizable(width=False, height=False)
+
+def request(self):
+    people_ammount = int(ammount_entry.get())
+    user_position = [int(positionX_entry_user.get()), int(positionY_entry_user.get())]
+    user_destination = [positionX_entry_destination.get(), positionY_entry_destination.get()]
+    if sum(user_position) > 10 or sum(user_destination) > 10:
+        tkinter.messagebox.showinfo("Error", "Your position/ Destination is not valid, must be between 0 and 5")
+    if people_ammount > 6:
+        tkinter.messagebox.showinfo("Error", "Our service does not transport more than 6 people")
+    
+
 
 frame_0 = Frame(root)
 frame_1 = Frame(root)
@@ -69,5 +81,7 @@ Y_label_destination.pack(side=LEFT)
 positionY_entry_destination.pack(pady=7, side=LEFT)
 
 submit_button.pack()
+
+submit_button.bind("<Button-1>", request)
 
 root = mainloop()
