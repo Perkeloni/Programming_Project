@@ -95,7 +95,8 @@ def display_list(car_object_list, criteria, database):
             lines = file.readlines()
             for item in lines:
                 listbox.insert(END, item)
-
+            submit_button.destroy()
+            
     root.mainloop()
 
 
