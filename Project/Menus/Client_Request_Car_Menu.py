@@ -29,7 +29,7 @@ def request(self):
     else:
         Valid = True
     if Valid:
-        Client_Side_Utils.proccess_request(user_position, user_destination)
+        Client_Side_Utils.proccess_request(user_position, user_destination, people_ammount)
         root.destroy()
 
 
