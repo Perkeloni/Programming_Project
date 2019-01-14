@@ -100,13 +100,16 @@ def write_car(brand, driver, license_plate, x, y, car_type):
         os.system("python Admin_Menu.py")
 
 
-def set_inactive(car_number):
+def set_inactive(car_number): #this actually sets both inactive and active if its already inactive
     file = open(filename, "r")
     data = file.readlines()
 
     line = data[(int(car_number)-1)]
     line = line[::-1]
-    line = line.replace("1", "0", 1)
+    if line[0] == "0":
+        line = line.replace("0", "1", 1)
+    elif line[0] == "1":
+        line = line.replace("1", "0", 1)
     line = line[::-1]
     data[(int(car_number)-1)] = line
 

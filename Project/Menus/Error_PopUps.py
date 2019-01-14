@@ -30,6 +30,6 @@ def nothing_inserted():
 def inactive_set():
     root = Tk()
 
-    tkinter.messagebox.showinfo("Done", "Car Is Now Inactive")
+    tkinter.messagebox.showinfo("Done", "Active Status Changed")
 
     root.destroy()

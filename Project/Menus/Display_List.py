@@ -5,6 +5,7 @@ import Error_PopUps
 
 filename = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Databases/Login_Database'))
 
+
 def display_list(car_object_list, criteria, database):
 
     def submit(self):
@@ -96,7 +97,7 @@ def display_list(car_object_list, criteria, database):
             for item in lines:
                 listbox.insert(END, item)
             submit_button.destroy()
-            
+
     root.mainloop()
 
 
