@@ -3,6 +3,8 @@
 
 from tkinter import *
 import tkinter.messagebox
+import Client_Side_Utils
+
 
 root = Tk()
 root.geometry("300x300")
@@ -10,13 +12,26 @@ root.resizable(width=False, height=False)
 
 
 def request(self):
+    Valid = True
     people_ammount = int(ammount_entry.get())
     user_position = [int(positionX_entry_user.get()), int(positionY_entry_user.get())]
-    user_destination = [positionX_entry_destination.get(), positionY_entry_destination.get()]
-    if sum(user_position) > 10 or sum(user_destination) > 10:
-        tkinter.messagebox.showinfo("Error", "Your position/ Destination is not valid, must be between 0 and 5")
-    if people_ammount > 6:
+    user_destination = [int(positionX_entry_destination.get()), int(positionY_entry_destination.get())]
+    for item in user_position:
+        if item > 5:
+            Valid = False
+    for item in user_destination:
+        if item > 5:
+            Valid = False
+    if not Valid:
+        tkinter.messagebox.showinfo("Error", "Your Position/Destination is not valid, must be between 0 and 5")
+    elif people_ammount > 6:
         tkinter.messagebox.showinfo("Error", "Our service does not transport more than 6 people")
+    else:
+        Valid = True
+    if Valid:
+        Client_Side_Utils.proccess_request(user_position, user_destination)
+        root.destroy()
+
 
 
 

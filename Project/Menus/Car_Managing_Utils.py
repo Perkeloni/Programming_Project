@@ -8,7 +8,7 @@ filename = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Databa
 
 class Vehicles:
 
-    def __init__(self, spec_list):
+    def __init__(self, spec_list): #every var in here even if numerical is always given in string format
         self.number = spec_list[0]
         self.car_type = spec_list[1]
         self.brand = spec_list[2]
@@ -20,7 +20,7 @@ class Vehicles:
         self.x = spec_list[8]
         self.y = spec_list[9]
         self.active = spec_list[10]
-        self.busy = False
+        self.busy = spec_list[11]
 
         if self.car_type == "car":
             self.cost = 0.4  # per km
@@ -33,7 +33,10 @@ class Vehicles:
             self.speed = 250
 
     def busy_status(self):
-        self.busy = True
+        if self.busy == "0":
+            self.busy = "1"
+        elif self.busy == "1":
+            self.busy = "0"
 
     def __str__(self):
         return "Number:_" + self.number + " Type:_" + self.car_type + " Brand:_" + self.brand + " Driver:_" + self.driver \
@@ -58,6 +61,7 @@ def update_class():
                 car_list.append(car)
                 line = file.readline()
 
+            del car_list[0]
             return car_list
             program_running = False
 
