@@ -145,3 +145,39 @@ def display_info_list(selection):
                 listbox.insert(END, final_result)
 
     root.mainloop()
+
+
+def display_request_list(car_object_list, sorted_distance):
+
+    def submit(self):
+        #####MISSING CODE THIS WILL DISPLAY THE PRICE AND ETA BOTH TO THE DESTINATION AS WELL AS TO THE USER.
+        selection = listbox.get(listbox.curselection())
+
+    def cancel(self):
+        root.destroy()
+        os.system("python Client_Request_Car_Menu.py")
+
+    root = Tk()
+
+    root.geometry("400x300")
+    root.resizable(width=False, height=False)
+
+    listbox = Listbox(root)
+    listbox.pack(fill=BOTH, expand=1)
+
+    submit_button = Button(root, text="Submit")
+    cancel_button = Button(root, text="Cancel")
+
+    submit_button.pack()
+    cancel_button.pack()
+
+    submit_button.bind("<Button-1>", submit)
+    cancel_button.bind("<Button-1>", cancel)
+
+    listbox.insert(END, "Select a item for more options")
+
+    for item in car_object_list:
+        listbox.insert(END, item.number + " " + item.car_type + " " + item.brand + " " +
+                       item.driver + " " + item.license + " " + item.jobs + " " + "Distance " + str(sorted_distance[car_object_list.index(item)]))
+
+    root.mainloop()

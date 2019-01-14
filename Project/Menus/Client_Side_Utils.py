@@ -1,12 +1,13 @@
 import math
 import Car_Managing_Utils
-
+import Display_List
 
 
 def proccess_request(user_position, user_destination, user_ammount):
     final_car_list = []
     dist_list = {}
     sorted_car_list = []
+    distance_final_list = []
     user_x = float(user_position[0])
     user_y = float(user_position[1])
     user_destination_x = float(user_destination[0])
@@ -18,6 +19,9 @@ def proccess_request(user_position, user_destination, user_ammount):
         dist_list.update(buffer_var)
     sorted_x = sorted(dist_list.items(), key=lambda kv: kv[1])
     sorted_x = dict(sorted_x)
+    for key, value in sorted_x.items():
+        temp = value
+        distance_final_list.append(temp)
     for key in sorted_x:
         for item in car_data:
             if key == item.number:
@@ -29,8 +33,8 @@ def proccess_request(user_position, user_destination, user_ammount):
             if item2.car_type == "van":
                 van = sorted_car_list[sorted_car_list.index(item2)]
                 final_car_list.append(van)
-    for item in final_car_list:
-        print(item.number)
+    Display_List.display_request_list(final_car_list, distance_final_list)
+
 
 
 
