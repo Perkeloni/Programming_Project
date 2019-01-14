@@ -4,7 +4,7 @@
 from tkinter import *
 import tkinter.messagebox
 import Client_Side_Utils
-
+import Display_List
 
 root = Tk()
 root.geometry("300x300")
@@ -30,7 +30,8 @@ def request(self):
         Valid = True
     if Valid:
         root.destroy()
-        Client_Side_Utils.proccess_request(user_position, user_destination, people_ammount)
+        final_car_list, distance_final_list = Client_Side_Utils.proccess_request(user_position, people_ammount)
+        Display_List.display_request_list(final_car_list, distance_final_list)
 
 
 
