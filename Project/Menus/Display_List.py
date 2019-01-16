@@ -137,7 +137,7 @@ def display_info_list(selection):
 
     for item in car_list:
         if item.number == selection:
-            number = int(selection) - 1
+            number = int(selection) - 2
             result = car_list[number].__str__()
             result2 = result.split(" ")
 
@@ -148,10 +148,47 @@ def display_info_list(selection):
     root.mainloop()
 
 
+def display_request_result(arrival_time, total_time, total_cost, car_selection, total_distance):
+
+    def submit(self):
+        #  MISSING CODE THIS WILL DISPLAY THE FUCK YOUR MOM
+        root2.destroy()
+        Car_Managing_Utils.money_distance_change(car_selection, total_cost, total_distance)
+
+
+    def cancel(self):
+        root2.destroy()
+
+    root2 = Tk()
+
+    root2.geometry("400x300")
+    root2.resizable(width=False, height=False)
+
+    listbox = Listbox(root2)
+    listbox.pack(fill=BOTH, expand=1)
+
+    submit_button = Button(root2, text="Submit")
+    cancel_button = Button(root2, text="Cancel")
+
+    submit_button.pack()
+    cancel_button.pack()
+
+    submit_button.bind("<Button-1>", submit)
+    cancel_button.bind("<Button-1>", cancel)
+
+    listbox.insert(END, "All Values Given are Estimates")
+    listbox.insert(END, "Time is Given in Minutes")
+    listbox.insert(END, "Arrival Time: " + str(arrival_time))
+    listbox.insert(END, "Time to Reach Destination: " + str(total_time))
+    listbox.insert(END, "Total Price: " + str(total_cost))
+
+    root2.mainloop()
+
+
 def display_request_list(car_object_list, sorted_distance, user_destination_distance):
 
     def submit(self):
-        #####MISSING CODE THIS WILL DISPLAY THE PRICE AND ETA BOTH TO THE DESTINATION AS WELL AS TO THE USER.
+        #  MISSING CODE THIS WILL DISPLAY THE PRICE AND ETA BOTH TO THE DESTINATION AS WELL AS TO THE USER.
         selection = listbox.get(listbox.curselection())
         selection2 = selection.split(" ")
         distance = float(selection2[-1])
@@ -160,9 +197,9 @@ def display_request_list(car_object_list, sorted_distance, user_destination_dist
             if selection[0] == item.number:
                 selection = item
                 break
-        result = Client_Side_Utils.calculate_time_price(selection, distance, user_destination_distance)
-
-
+        root.destroy()
+        arrival_time, total_time, total_cost, car_selection, total_distance = Client_Side_Utils.calculate_time_price(selection, distance, user_destination_distance)
+        display_request_result(arrival_time, total_time, total_cost, car_selection, total_distance)
 
     def cancel(self):
         root.destroy()
@@ -186,6 +223,7 @@ def display_request_list(car_object_list, sorted_distance, user_destination_dist
     cancel_button.bind("<Button-1>", cancel)
 
     listbox.insert(END, "Select a item for more options")
+    listbox.insert(END, "Number-Type-Brand-Driver-License-Jobs")
 
     for item in car_object_list:
         item.driver2 = item.driver.replace("_", " ")
@@ -194,5 +232,5 @@ def display_request_list(car_object_list, sorted_distance, user_destination_dist
 
     root.mainloop()
 
-#def display_request_info(requested_car):
+
 

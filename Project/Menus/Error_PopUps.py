@@ -27,9 +27,18 @@ def nothing_inserted():
 
     root.destroy()
 
+
 def inactive_set():
     root = Tk()
 
     tkinter.messagebox.showinfo("Done", "Active Status Changed")
+
+    root.destroy()
+
+
+def car_called():
+    root = Tk()
+
+    tkinter.messagebox.showinfo("Done", "Your Car Will Arrive Shortly")
 
     root.destroy()

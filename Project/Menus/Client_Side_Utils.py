@@ -1,9 +1,9 @@
 import math
 import Car_Managing_Utils
 
-
 def proccess_request(user_position, user_ammount, user_destination):
     final_car_list = []
+    trully_final_car_list = []
     dist_list = {}
     sorted_car_list = []
     distance_final_list = []
@@ -34,7 +34,12 @@ def proccess_request(user_position, user_ammount, user_destination):
                 final_car_list.append(van)
     user_destination_distance = math.sqrt(((destination_x - float(user_x)) ** 2) + ((destination_y - float(user_y)) ** 2))
     user_destination_distance = round(user_destination_distance, 1)
-    return final_car_list, distance_final_list, user_destination_distance
+    for item3 in final_car_list:
+        if item3.active == "1":
+            active = final_car_list[final_car_list.index(item3)]
+            trully_final_car_list.append(active)
+
+    return trully_final_car_list, distance_final_list, user_destination_distance
 
 
 def calculate_time_price(selection, distance, user_destination_distance):
@@ -43,14 +48,11 @@ def calculate_time_price(selection, distance, user_destination_distance):
     total_cost = 0
     total_time = 0
     arrival_time = 0
+    car_selection = selection
+    total_distance = distance + user_destination_distance
     total_cost += selection.start_cost
     total_cost += selection.cost*(distance+user_destination_distance)
     arrival_time += round(distance/car_speed)
     total_time += round((distance+user_destination_distance)/car_speed)
-    print(distance, user_destination_distance)
-    print(arrival_time)
-    print(total_cost)
-    print(total_time)
-
-
-
+    total_cost = round(total_cost, 2)
+    return arrival_time, total_time, total_cost, car_selection, total_distance

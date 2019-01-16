@@ -2,6 +2,7 @@
 import os
 import tkinter.messagebox
 from tkinter import *
+import Error_PopUps
 
 filename = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Databases/Car_Database'))
 
@@ -19,8 +20,9 @@ class Vehicles:
         self.money = spec_list[7]
         self.x = spec_list[8]
         self.y = spec_list[9]
-        self.active = spec_list[10]
-        self.busy = spec_list[11]
+        self.busy = spec_list[10]
+        self.active = spec_list[11]
+
 
         if self.car_type == "car":
             self.cost = 0.4  # per km
@@ -70,6 +72,8 @@ def write_car(brand, driver, license_plate, x, y, car_type):
     root = Tk()
     valid = False
     car_list = update_class() #Could set this to global variable instead of reading from file again
+    x = float(x)
+    y = float(y)
 
     for check in car_list:
         if check.license == license_plate:
@@ -96,7 +100,7 @@ def write_car(brand, driver, license_plate, x, y, car_type):
 
         file = open(filename, "a")
         input = (str(number) + " " + car_type + " " + brand + " " + driver + " " + license_plate + " " + "0.0" + " " + "0"
-                 + " " + "0.0" + " " + x + " " + y + " " + "1" + "\n")
+                 + " " + "0.0" + " " + str(x) + " " + str(y) + " " + "1" + " 0" + "\n")
         file.write(input)
         file.close()
         tkinter.messagebox.showinfo("Success", "Car Was Added")
@@ -107,20 +111,51 @@ def write_car(brand, driver, license_plate, x, y, car_type):
 def set_inactive(car_number): #this actually sets both inactive and active if its already inactive
     file = open(filename, "r")
     data = file.readlines()
+    print(car_number)
+    print(type(car_number))
 
-    line = data[(int(car_number)-1)]
-    line = line[::-1]
-    if line[0] == "0":
-        line = line.replace("0", "1", 1)
-    elif line[0] == "1":
-        line = line.replace("1", "0", 1)
-    line = line[::-1]
-    data[(int(car_number)-1)] = line
+    for item in data:
+        if car_number == item[0]:
+            item2 = item
+            item2 = item2.replace("\n", "")
+            print(item2)
+            item2 = item2[::-1]
+            if item2[0] == "0":
+                item2 = item2.replace("0", "1", 1)
+                loc = data.index(item)
+                data.remove(item)
+                item2 = item2[::-1]
+                item2 = item2 + "\n"
+                data.insert(loc, item2)
+            elif item2[0] == "1":
+                item2 = item2.replace("1", "0", 1)
+                loc = data.index(item)
+                data.remove(item)
+                item2 = item2[::-1]
+                item2 = item2 + "\n"
+                data.insert(loc, item2)
 
     file.close()
 
     file = open(filename, "w")
-    print(data)
     file.writelines(data)
     file.close()
 
+def money_distance_change(selection, total_cost, total_distance):
+    with open(filename) as file:
+        database = file.readlines()
+    for item in database:
+        if item.split(" ")[0] == selection.number:
+            selection.jobs = int(selection.jobs) + 1
+            selection.money = float(selection.money) + float(total_cost)
+            selection.km = int(total_distance) + int(total_distance)
+            database[(database.index(item))] = str(selection.number + " " + selection.car_type + " " + selection.brand + " "
+                                                   + selection.driver + " " + selection.license + " " + str(selection.km)
+                                                   + " " + str(selection.jobs) + " " + str(selection.money) + " " +
+                                                   selection.x + " " + selection.y + " " + selection.busy + " " +
+                                                   selection.active + "\n")
+    file = open(filename, "w")
+    for item in database:
+        file.write(item)
+    file.close()
+    Error_PopUps.car_called()
