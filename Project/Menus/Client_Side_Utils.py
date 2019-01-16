@@ -42,10 +42,13 @@ def calculate_time_price(selection, distance, user_destination_distance):
     car_speed = round(car_speed, 2)
     total_cost = 0
     total_time = 0
+    arrival_time = 0
     total_cost += selection.start_cost
     total_cost += selection.cost*(distance+user_destination_distance)
-    total_time += (distance+user_destination_distance)/car_speed
+    arrival_time += round(distance/car_speed)
+    total_time += round((distance+user_destination_distance)/car_speed)
     print(distance, user_destination_distance)
+    print(arrival_time)
     print(total_cost)
     print(total_time)
 
