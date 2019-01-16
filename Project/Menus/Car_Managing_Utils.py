@@ -25,12 +25,12 @@ class Vehicles:
         if self.car_type == "car":
             self.cost = 0.4  # per km
             self.start_cost = 3
-            self.speed = 300
+            self.speed = 30  # km h
 
         if self.car_type == "van":
-            self.cost = 7  # per km
+            self.cost = 0.7  # per km
             self.start_cost = 4
-            self.speed = 250
+            self.speed = 25  # km h
 
     def busy_status(self):
         if self.busy == "0":

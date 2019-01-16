@@ -1,15 +1,16 @@
 import math
 import Car_Managing_Utils
-import Display_List
 
 
-def proccess_request(user_position, user_ammount):
+def proccess_request(user_position, user_ammount, user_destination):
     final_car_list = []
     dist_list = {}
     sorted_car_list = []
     distance_final_list = []
     user_x = float(user_position[0])
     user_y = float(user_position[1])
+    destination_x = float(user_destination[0])
+    destination_y = float(user_destination[1])
     car_data = Car_Managing_Utils.update_class()  # I really should set this as global variables instead of reading from file everytime
     for item in car_data:
         distance = math.sqrt(((user_x - float(item.x)) ** 2) + ((user_y - float(item.y)) ** 2))
@@ -31,4 +32,22 @@ def proccess_request(user_position, user_ammount):
             if item2.car_type == "van":
                 van = sorted_car_list[sorted_car_list.index(item2)]
                 final_car_list.append(van)
-    return final_car_list, distance_final_list
+    user_destination_distance = math.sqrt(((destination_x - float(user_x)) ** 2) + ((destination_y - float(user_y)) ** 2))
+    user_destination_distance = round(user_destination_distance, 1)
+    return final_car_list, distance_final_list, user_destination_distance
+
+
+def calculate_time_price(selection, distance, user_destination_distance):
+    car_speed = selection.speed/60 #turning it into km per minute
+    car_speed = round(car_speed, 2)
+    total_cost = 0
+    total_time = 0
+    total_cost += selection.start_cost
+    total_cost += selection.cost*(distance+user_destination_distance)
+    total_time += (distance+user_destination_distance)/car_speed
+    print(distance, user_destination_distance)
+    print(total_cost)
+    print(total_time)
+
+
+

@@ -2,6 +2,7 @@ from tkinter import *
 import os
 import Car_Managing_Utils
 import Error_PopUps
+import Client_Side_Utils
 
 filename = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Databases/Login_Database'))
 
@@ -147,11 +148,21 @@ def display_info_list(selection):
     root.mainloop()
 
 
-def display_request_list(car_object_list, sorted_distance):
+def display_request_list(car_object_list, sorted_distance, user_destination_distance):
 
     def submit(self):
         #####MISSING CODE THIS WILL DISPLAY THE PRICE AND ETA BOTH TO THE DESTINATION AS WELL AS TO THE USER.
         selection = listbox.get(listbox.curselection())
+        selection2 = selection.split(" ")
+        distance = float(selection2[-1])
+
+        for item in car_object_list:
+            if selection[0] == item.number:
+                selection = item
+                break
+        result = Client_Side_Utils.calculate_time_price(selection, distance, user_destination_distance)
+
+
 
     def cancel(self):
         root.destroy()
@@ -177,7 +188,11 @@ def display_request_list(car_object_list, sorted_distance):
     listbox.insert(END, "Select a item for more options")
 
     for item in car_object_list:
+        item.driver2 = item.driver.replace("_", " ")
         listbox.insert(END, item.number + " " + item.car_type + " " + item.brand + " " +
-                       item.driver + " " + item.license + " " + item.jobs + " " + "Distance " + str(sorted_distance[car_object_list.index(item)]))
+                       item.driver2 + " " + item.license + " " + item.jobs + " " + "Distance " + str(sorted_distance[car_object_list.index(item)]))
 
     root.mainloop()
+
+#def display_request_info(requested_car):
+
