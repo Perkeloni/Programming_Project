@@ -122,7 +122,7 @@ def display_info_list(selection):
     listbox = Listbox(root)
     listbox.pack(fill=BOTH, expand=1)
 
-    submit_button = Button(root, text="Set Inactive")
+    submit_button = Button(root, text="Set Status")
     cancel_button = Button(root, text="Return")
 
     submit_button.pack()
@@ -158,6 +158,7 @@ def display_request_result(arrival_time, total_time, total_cost, car_selection, 
 
     def cancel(self):
         root2.destroy()
+        os.system("python Client_Request_Car_Menu.py")
 
     root2 = Tk()
 

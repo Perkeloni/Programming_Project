@@ -1,6 +1,7 @@
 import math
 import Car_Managing_Utils
 
+
 def proccess_request(user_position, user_ammount, user_destination):
     final_car_list = []
     trully_final_car_list = []
@@ -26,7 +27,7 @@ def proccess_request(user_position, user_ammount, user_destination):
             if key == item.number:
                 sorted_car_list.append(car_data[car_data.index(item)])
     if user_ammount <= 4:
-        trully_final_car_list = final_car_list = sorted_car_list
+        trully_final_car_list = sorted_car_list
     if user_ammount > 4:
         for item2 in sorted_car_list:
             if item2.car_type == "van":

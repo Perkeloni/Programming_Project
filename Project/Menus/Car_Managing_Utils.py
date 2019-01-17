@@ -111,14 +111,11 @@ def write_car(brand, driver, license_plate, x, y, car_type):
 def set_inactive(car_number): #this actually sets both inactive and active if its already inactive
     file = open(filename, "r")
     data = file.readlines()
-    print(car_number)
-    print(type(car_number))
 
     for item in data:
         if car_number == item[0]:
             item2 = item
             item2 = item2.replace("\n", "")
-            print(item2)
             item2 = item2[::-1]
             if item2[0] == "0":
                 item2 = item2.replace("0", "1", 1)
