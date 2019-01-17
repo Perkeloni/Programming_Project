@@ -31,7 +31,7 @@ def request(self):
     if Valid:
         root.destroy()
         final_car_list, distance_final_list, user_destination_distance = Client_Side_Utils.proccess_request(user_position, people_ammount, user_destination)
-        Display_List.display_request_list(final_car_list, distance_final_list, user_destination_distance)
+        Display_List.display_request_list(final_car_list, distance_final_list, user_destination_distance, user_position, user_destination)
 
 
 

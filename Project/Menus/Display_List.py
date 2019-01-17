@@ -3,6 +3,7 @@ import os
 import Car_Managing_Utils
 import Error_PopUps
 import Client_Side_Utils
+import turtle_map
 
 filename = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'Databases/Login_Database'))
 
@@ -151,7 +152,6 @@ def display_info_list(selection):
 def display_request_result(arrival_time, total_time, total_cost, car_selection, total_distance):
 
     def submit(self):
-        #  MISSING CODE THIS WILL DISPLAY THE FUCK YOUR MOM
         root2.destroy()
         Car_Managing_Utils.money_distance_change(car_selection, total_cost, total_distance)
 
@@ -186,13 +186,13 @@ def display_request_result(arrival_time, total_time, total_cost, car_selection, 
     root2.mainloop()
 
 
-def display_request_list(car_object_list, sorted_distance, user_destination_distance):
+def display_request_list(car_object_list, sorted_distance, user_destination_distance, user_position, user_destination):
 
     def submit(self):
-        #  MISSING CODE THIS WILL DISPLAY THE PRICE AND ETA BOTH TO THE DESTINATION AS WELL AS TO THE USER.
         selection = listbox.get(listbox.curselection())
         selection2 = selection.split(" ")
         distance = float(selection2[-1])
+        turtle_map.turtle_close()
 
         for item in car_object_list:
             if selection[0] == item.number:
@@ -203,6 +203,7 @@ def display_request_list(car_object_list, sorted_distance, user_destination_dist
         display_request_result(arrival_time, total_time, total_cost, car_selection, total_distance)
 
     def cancel(self):
+        turtle_map.turtle_close()
         root.destroy()
         os.system("python Client_Request_Car_Menu.py")
 
@@ -225,13 +226,18 @@ def display_request_list(car_object_list, sorted_distance, user_destination_dist
 
     listbox.insert(END, "Select a item for more options")
     listbox.insert(END, "Number-Type-Brand-Driver-License-Jobs")
+    listbox.insert(END, "Green is you, Red your Destination")
 
     for item in car_object_list:
         item.driver2 = item.driver.replace("_", " ")
         listbox.insert(END, item.number + " " + item.car_type + " " + item.brand + " " +
                        item.driver2 + " " + item.license + " " + item.jobs + " " + "Distance " + str(sorted_distance[car_object_list.index(item)]))
 
+    turtle_map.turtle_map(user_destination, user_position, car_object_list)
+
     root.mainloop()
+
+
 
 
 
