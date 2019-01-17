@@ -178,10 +178,10 @@ def display_request_result(arrival_time, total_time, total_cost, car_selection, 
     cancel_button.bind("<Button-1>", cancel)
 
     listbox.insert(END, "All Values Given are Estimates")
-    listbox.insert(END, "Time is Given in Minutes")
-    listbox.insert(END, "Arrival Time: " + str(arrival_time))
-    listbox.insert(END, "Time to Reach Destination: " + str(total_time))
-    listbox.insert(END, "Total Price: " + str(total_cost))
+    listbox.insert(END, "Arrival Time: " + str(arrival_time) + " Minutes")
+    listbox.insert(END, "Time to Reach Destination: " + str(total_time) + " Minutes")
+    listbox.insert(END, "Total Price: " + str(total_cost) + "€")
+    listbox.insert(END, "Driver: " + str(car_selection.driver))
 
     root2.mainloop()
 
@@ -191,7 +191,7 @@ def display_request_list(car_object_list, sorted_distance, user_destination_dist
     def submit(self):
         selection = listbox.get(listbox.curselection())
         selection2 = selection.split(" ")
-        distance = float(selection2[-1])
+        distance = float(selection2[-2])
         turtle_map.turtle_close()
 
         for item in car_object_list:
@@ -225,13 +225,13 @@ def display_request_list(car_object_list, sorted_distance, user_destination_dist
     cancel_button.bind("<Button-1>", cancel)
 
     listbox.insert(END, "Select a item for more options")
-    listbox.insert(END, "Number-Type-Brand-Driver-License-Jobs")
+    listbox.insert(END, "Number-Type-Brand-Driver-License-Jobs-Distance")
     listbox.insert(END, "Green is you, Red your Destination")
 
     for item in car_object_list:
         item.driver2 = item.driver.replace("_", " ")
-        listbox.insert(END, item.number + " " + item.car_type + " " + item.brand + " " +
-                       item.driver2 + " " + item.license + " " + item.jobs + " " + "Distance " + str(sorted_distance[car_object_list.index(item)]))
+        listbox.insert(END, item.number + " " + item.car_type + " " + item.brand + "  " +
+                       item.driver2 + " " + item.license + "  Jobs: " + item.jobs + " " + " " + str(sorted_distance[car_object_list.index(item)])+ " Km")
 
     turtle_map.turtle_map(user_destination, user_position, car_object_list)
 

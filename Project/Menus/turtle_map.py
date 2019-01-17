@@ -5,6 +5,7 @@ def turtle_map(user_destination, user_location, car_list):
 
     def set_user_location(user_location):
         user = turtle.Turtle()
+        user.speed(0)
         user.penup()
         user.left(90)
         user.forward(250)
@@ -22,6 +23,7 @@ def turtle_map(user_destination, user_location, car_list):
 
     def set_user_destination(user_destination):
         destination = turtle.Turtle()
+        destination.speed(0)
         destination.penup()
         destination.left(90)
         destination.forward(250)
@@ -36,11 +38,13 @@ def turtle_map(user_destination, user_location, car_list):
         destination.left(90)
         destination.forward(destination_y)
         destination.color("red")
+        destination.left(180)
 
     def set_cars(car_object_list):
 
         for item in car_object_list:
             car = turtle.Turtle()
+            car.speed(0)
             car.penup()
             car.left(90)
             car.forward(250)
@@ -54,16 +58,11 @@ def turtle_map(user_destination, user_location, car_list):
             car.forward(x)
             car.left(90)
             car.forward(y)
-
-
-
-
-
-
-
+            car.left(90)
 
     map = turtle.Turtle()
-
+    map.ht()
+    map.speed(0)
     map.penup()
     map.forward(250)
     map.right(90)
@@ -77,8 +76,6 @@ def turtle_map(user_destination, user_location, car_list):
     map.forward(500)
     map.right(90)
     map.forward(250)
-
-    map.ht()
 
     set_user_location(user_location)
     set_user_destination(user_destination)
