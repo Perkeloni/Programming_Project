@@ -38,7 +38,7 @@ def turtle_map(user_destination, user_location, car_list):
         destination.color("red")
 
     def set_cars(car_object_list):
-        print(car_object_list)
+
         for item in car_object_list:
             car = turtle.Turtle()
             car.penup()
