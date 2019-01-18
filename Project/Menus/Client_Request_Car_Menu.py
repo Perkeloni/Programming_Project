@@ -14,8 +14,8 @@ root.resizable(width=False, height=False)
 def request(self):
     Valid = True
     people_ammount = int(ammount_entry.get())
-    user_position = [int(positionX_entry_user.get()), int(positionY_entry_user.get())]
-    user_destination = [int(positionX_entry_destination.get()), int(positionY_entry_destination.get())]
+    user_position = [float(positionX_entry_user.get()), float(positionY_entry_user.get())]
+    user_destination = [float(positionX_entry_destination.get()), float(positionY_entry_destination.get())]
     for item in user_position:
         if item > 5:
             Valid = False
